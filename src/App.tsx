@@ -14,6 +14,7 @@ import FlexCategory, {
 } from './components/output/FlexCategory';
 import Controls from './components/input/Controls';
 import React from 'react';
+import isLocalhost from './isLocalhost';
 
 const initialValues: FormValues = getStoredFormValues();
 
@@ -199,7 +200,7 @@ export default function App() {
 				<Controls/>
 				<br/>
 
-				<Output showValues/>
+				<Output showValues={isLocalhost()}/>
 			</Form>
 		</Formik>
 	</>);
