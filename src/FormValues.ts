@@ -16,7 +16,11 @@ const advantage = Yup
 ;
 
 export const validationSchema = Yup.object({
-	projectName: Yup.string().label('Project Name'),
+	projectName: Yup
+		.string()
+		.label('Project Name')
+		.default('')
+	,
 	workableHoursInADay: requiredNumber
 		.positive()
 		.label('Workable Hours in a Day')
