@@ -1,0 +1,12 @@
+button.control {
+	color: white;
+	background-color: gray;
+}
+
+button.control:disabled {
+	color: #a0a0a0;
+}
+
+button.control:hover:enabled {
+	background-color: cadetblue;
+}
