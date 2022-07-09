@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dnd-project-progress/static/css/main.b6dbec94.css",
+    "main.js": "/dnd-project-progress/static/js/main.632fd2dd.js",
+    "static/js/787.006e9d73.chunk.js": "/dnd-project-progress/static/js/787.006e9d73.chunk.js",
+    "index.html": "/dnd-project-progress/index.html",
+    "main.b6dbec94.css.map": "/dnd-project-progress/static/css/main.b6dbec94.css.map",
+    "main.632fd2dd.js.map": "/dnd-project-progress/static/js/main.632fd2dd.js.map",
+    "787.006e9d73.chunk.js.map": "/dnd-project-progress/static/js/787.006e9d73.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6dbec94.css",
+    "static/js/main.632fd2dd.js"
+  ]
+}
