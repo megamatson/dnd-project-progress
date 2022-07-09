@@ -11,11 +11,12 @@ function ControlButton(
 			React.ButtonHTMLAttributes<HTMLButtonElement>,
 			HTMLButtonElement
 		>,
-		'className'
+		'className'|'button'
 	>
 ) {
 	return (<button
 		className='control'
+		type='button'
 		{...props}
 	>
 		{children}
@@ -29,7 +30,9 @@ export default function Controls(props: Props) {
 		return null;
 
 	return (<>
-		<ControlButton onClick={() => console.log('next day')}>
+		<ControlButton
+			onClick={() => console.log('next day')}
+		>
 			Next Day
 		</ControlButton>
 	</>);
