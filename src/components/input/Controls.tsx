@@ -1,12 +1,12 @@
 import { useFormikContext } from 'formik';
 import _ from 'lodash';
-import compose from '../../functions/compose';
 import '../../css/Button.css';
 import '../../css/Controls.css';
 import d from '../../functions/d';
 import FormValues, { validationSchema } from '../../FormValues';
 import { FormNumber } from '../../types/FormNumber';
 import Category from '../output/Category';
+import pipe from '../../functions/pipe';
 
 export interface Props {}
 
@@ -77,7 +77,7 @@ const resetProject: ValuesChanger = ({
 	...oldValues,
 });
 
-const resetTimeAndProjects: ValuesChanger = compose(resetTime, resetProject);
+const resetTimeAndProjects: ValuesChanger = pipe(resetTime, resetProject);
 
 const reset: ValuesChanger = () => {
 	return validationSchema.getDefault();
@@ -235,11 +235,6 @@ function workFullTimeEvented(
 	return values;
 }
 
-compose<number, number, string>(
-	v => `=${v}`,
-	v => 2 * v + 1
-);
-
 function workFullTime(emitEvent: EventEmitter): ValuesChanger {
 	return values => workFullTimeEvented(emitEvent, values);
 }
@@ -254,7 +249,7 @@ export default function Controls(props: Props) {
 		return null;
 
 	function commit(f: ValuesChanger, ...fs: ValuesChanger[]) {
-		const func = compose(f, ...fs);
+		const func = pipe(f, ...fs);
 		return () => context.setValues(func);
 	}
 
