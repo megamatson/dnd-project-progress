@@ -40,7 +40,7 @@ const TimeLeft = React.memo(function TimeLeft({time}: Props) {
 		return null;
 
 	return (<>
-		<p>Estimated time to complete, working full-time:</p>
+		<p>Estimated time to complete, working overtime:</p>
 		<p>{outputText}</p>
 	</>);
 });
