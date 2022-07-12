@@ -1,5 +1,5 @@
 import React from "react";
-import removeExtraneousZeros from "../../removeExtraneousZeros";
+import removeExtraneousZeros from "../../functions/removeExtraneousZeros";
 import Time from "../../types/Time";
 
 export interface Props {

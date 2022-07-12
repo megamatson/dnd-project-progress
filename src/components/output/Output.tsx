@@ -1,9 +1,9 @@
 import { useFormikContext } from "formik";
 import _ from "lodash";
-import { probabilityOfPassingSavingThrow } from "../../dc";
+import { probabilityOfPassingSavingThrow } from "../../functions/dc";
 import FormValues from "../../FormValues";
-import { setStoredFormValues } from "../../localStorage";
-import percentFormat from "../../percentFormat";
+import { setStoredFormValues } from "../../functions/localStorage";
+import percentFormat from "../../functions/percentFormat";
 import Advantage from "../../types/Advantage";
 import Time from "../../types/Time";
 import TimeLeft from "./TimeLeft";

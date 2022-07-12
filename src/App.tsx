@@ -5,7 +5,7 @@ import LabeledErroringInput, {
 } from './components/input/LabeledErroringInput';
 import Output from './components/output/Output';
 import FormValues, {validationSchema, labels} from './FormValues';
-import { getStoredFormValues } from './localStorage';
+import { getStoredFormValues } from './functions/localStorage';
 import WorkHoursDaysOrWeeksInput from
 	'./components/input/WorkHoursDaysOrWeeksInput';
 import ProjectHeader from './components/output/ProjectHeader';
@@ -14,7 +14,7 @@ import FlexCategory, {
 } from './components/output/FlexCategory';
 import Controls from './components/input/Controls';
 import React from 'react';
-import isLocalhost from './isLocalhost';
+import isLocalhost from './functions/isLocalhost';
 
 const initialValues: FormValues = getStoredFormValues();
 

@@ -1,5 +1,5 @@
 import _ from "lodash";
-import Advantage from "./types/Advantage";
+import Advantage from "../types/Advantage";
 
 export interface Params {
 	dc: number,
