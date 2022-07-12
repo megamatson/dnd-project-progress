@@ -229,7 +229,7 @@ function workFullTimeEvented(
 
 	const roll = d(20);
 
-	emitEvent('unimplemented');
+	emitEvent(`unimplemented ${roll} vs DC ${dc}`);
 
 	return values;
 }
