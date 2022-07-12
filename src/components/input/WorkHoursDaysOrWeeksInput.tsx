@@ -1,4 +1,5 @@
 import { FieldHookConfig, useField, useFormikContext } from "formik";
+import _ from "lodash";
 import { useEffect } from "react";
 import { FormNumber } from "../../types/FormNumber";
 import ErrorText from "../output/ErrorText";
@@ -20,30 +21,31 @@ function fieldPropsFor(name: string): FieldHookConfig<FormNumber> {
 	};
 }
 
+function ensureValued(v: any) {
+	return _.isNumber(v) ? v : '';
+}
+
 export default function WorkHoursDaysOrWeeksInput(props: Props) {
 	const {setFieldValue} = useFormikContext();
 
 	const hoursName = props.name;
-	const [hoursField, hoursMeta] = useField<FormNumber>(
+	const [{value: hours, ...hoursField}, hoursMeta] = useField<FormNumber>(
 		fieldPropsFor(hoursName)
 	);
-	const {value: hours} = hoursField;
 
 	const daysName = props.name + 'Days';
-	const [daysField, daysMeta] = useField<FormNumber>(
+	const [{value: days, ...daysField}, daysMeta] = useField<FormNumber>(
 		fieldPropsFor(daysName)
 	);
-	const {value: days} = daysField;
 
 	const weeksName = props.name + 'Weeks';
-	const [weeksField, weeksMeta] = useField<FormNumber>(
+	const [{value: weeks, ...weeksField}, weeksMeta] = useField<FormNumber>(
 		fieldPropsFor(weeksName)
 	);
-	const {value: weeks} = weeksField;
 
 	useEffect(
 		() => {
-			if (hours !== '') {
+			if (_.isNumber(hours)) {
 				setFieldValue(daysName, hours / workHoursInADay);
 				setFieldValue(weeksName, hours / workHoursInAWeek);
 			}
@@ -53,23 +55,37 @@ export default function WorkHoursDaysOrWeeksInput(props: Props) {
 
 	useEffect(
 		() => {
-			if (days !== '') {
+			if (_.isNumber(days)) {
 				setFieldValue(hoursName, days * workHoursInADay);
 				setFieldValue(weeksName, days / workDaysInAWeek);
 			}
 		},
-		[days, hoursName, weeksName, setFieldValue]
+		[days, daysName, hoursName, weeksName, setFieldValue]
 	);
 
 	useEffect(
 		() => {
-			if (weeks !== '') {
+			if (_.isNumber(weeks)) {
 				setFieldValue(hoursName, weeks * workHoursInAWeek);
 				setFieldValue(daysName, weeks * workDaysInAWeek);
 			}
 		},
-		[weeks, hoursName, daysName, setFieldValue]
+		[weeks, weeksName, hoursName, daysName, setFieldValue]
 	);
+
+	useEffect(
+		() => {
+			if (_.isNumber(hours) && !_.isNumber(days) && !_.isNumber(weeks)) {
+				setFieldValue(daysName, hours / workHoursInADay);
+				setFieldValue(weeksName, hours / workHoursInAWeek);
+			}
+		},
+		[hours, days, weeks, daysName, weeksName, setFieldValue]
+	);
+
+	const sharedProps = {
+		min: 0,
+	} as const;
 
 	return (<label>
 		{props.label}
@@ -78,6 +94,8 @@ export default function WorkHoursDaysOrWeeksInput(props: Props) {
 				<input
 					{...hoursField}
 					type='number'
+					value={ensureValued(hours)}
+					{...sharedProps}
 				/> Work Hours
 			</label>
 			<br/>
@@ -86,6 +104,8 @@ export default function WorkHoursDaysOrWeeksInput(props: Props) {
 				<input
 					{...daysField}
 					type='number'
+					value={ensureValued(days)}
+					{...sharedProps}
 				/> Work Days
 			</label>
 			<br/>
@@ -98,6 +118,8 @@ export default function WorkHoursDaysOrWeeksInput(props: Props) {
 				<input
 					{...weeksField}
 					type='number'
+					value={ensureValued(weeks)}
+					{...sharedProps}
 				/> Work Weeks
 			</label>
 

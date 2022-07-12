@@ -54,11 +54,11 @@ function expectedOvertime(v: FormValues): number {
 			advantage: v.conSTadvantage as Advantage,
 		});
 
-		if (probabilityOfPassing) {
-			cumulativeProbability = probabilityOfPassing * cumulativeProbability;
-			cumulativeOvertime += cumulativeProbability * overtimeHour;
-		} else
+		if (!probabilityOfPassing)
 			break;
+
+		cumulativeProbability = probabilityOfPassing * cumulativeProbability;
+		cumulativeOvertime += cumulativeProbability * overtimeHour;
 	}
 
 	return cumulativeOvertime;
@@ -70,9 +70,6 @@ function expectedNumberOfWorkHoursPerDay(v: FormValues): number {
 
 export default function Output(props: Props) {
 	const context = useFormikContext<FormValues>();
-
-	// console.log(context);
-	// console.log(!!context.errors);
 
 	const percentDone = (
 		context.values.workHoursDone

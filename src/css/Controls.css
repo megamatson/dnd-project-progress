@@ -4,7 +4,7 @@ button.control {
 }
 
 button.control:disabled {
-	color: #a0a0a0;
+	color: #bbb;
 }
 
 button.control:hover:enabled {

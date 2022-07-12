@@ -130,6 +130,8 @@ export default function App() {
 					<LabeledField
 						type='number'
 						name='currentLevelOfExhaustion'
+						min={0}
+						max={6}
 					/>
 
 					<LabeledField
@@ -139,6 +141,7 @@ export default function App() {
 							'The number of exhaustion cures '
 							+ '(e.g. Greater Restoration) you have available every day.'
 						}
+						min={0}
 					/>
 				</StyledCategory>
 
@@ -163,11 +166,12 @@ export default function App() {
 					name='Time Parameters'
 				>
 					<LabeledField
-						name='daysWorked'
+						name='daysPassed'
 						type='number'
 						min={0}
 						title={
-							'The number of days you have been working.'
+							'The number of days that have passed since'
+							+ ' you have started working on the project.'
 							+ ' This is mainly for you to know when you are done'
 						}
 					/>

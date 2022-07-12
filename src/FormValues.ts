@@ -50,7 +50,7 @@ export const validationSchema = Yup.object({
 	,
 	workTimeToFinishProject: workHours
 		.positive()
-		.default(10)
+		.default(1)
 		.label('Work to Finish Project')
 	,
 	workHoursDone: workHours
@@ -77,14 +77,14 @@ export const validationSchema = Yup.object({
 		.default(0)
 		.label('Daily Exhaustion Cures')
 	,
-	daysWorked: requiredInteger
+	daysPassed: requiredInteger
 		.min(0)
 		.default(0)
-		.label('Days Worked')
+		.label('Days Passed')
 	,
 	workHoursLeftInTheDay: requiredNumber
 		.min(0)
-		.default(0)
+		.default(16)
 		.label('Work Hours Left in the Day')
 		.when('workableHoursInADay', (value, schema) =>
 			schema.max(
