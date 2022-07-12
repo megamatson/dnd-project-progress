@@ -90,6 +90,12 @@ export default function App() {
 							+ ' Constituion Saving Throws '
 							+ '(DC: 10 + numberOfHoursWorked - this)'
 							+ ' to avoid getting exhaustion.'
+							+ ' The save is made after working'
+							+ ' e.g. if this is 8,'
+							+ ' you will make a DC 11 Constitution Saving Throw'
+							+ " after you've worked for 9 hours in one day."
+							+ ' After working for 10 hours in one day,'
+							+ ' it will be a DC 12 Constitution Saving Throw.'
 						}
 					/>
 
