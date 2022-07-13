@@ -1,71 +1,13 @@
 import { useFormikContext } from "formik";
 import _ from "lodash";
-import { probabilityOfPassingSavingThrow } from "../../functions/dc";
 import FormValues from "../../FormValues";
 import { setStoredFormValues } from "../../functions/localStorage";
+import { estimateTimeToComplete } from "../../functions/worktTime";
 import percentFormat from "../../functions/percentFormat";
-import Advantage from "../../types/Advantage";
-import Time from "../../types/Time";
 import TimeLeft from "./TimeLeft";
 
 export interface Props {
 	showValues?: boolean
-}
-
-function estimateTimeToComplete(v: FormValues): Time {
-	/**
-	 * TODO:
-	 * exhaustion cures
-	 * */
-	let hours = v.workTimeToFinishProject - v.workHoursDone;
-	const workPerDay = expectedNumberOfWorkHoursPerDay(v);
-	const days = Math.floor(hours / workPerDay);
-	hours = hours - days * workPerDay;
-
-	return {
-		hours: Math.ceil(hours),
-		unroundedHours: hours,
-		days
-	};
-}
-
-function expectedOvertime(v: FormValues): number {
-	const possibleOvertime = Math.max(
-		v.workableHoursInADay - v.minimumWorksHoursPerDayBeforeExhaustionSaves,
-		0
-	);
-
-	if (possibleOvertime === 0)
-		return possibleOvertime;
-
-	let cumulativeOvertime = 0;
-	let cumulativeProbability = 1;
-
-	for (
-		let overtimeHour = 1;
-		overtimeHour < possibleOvertime + 1;
-		overtimeHour++
-	) {
-		const dc = 10 + overtimeHour;
-		const probabilityOfPassing = probabilityOfPassingSavingThrow({
-			dc,
-			savingThrowMod: v.conSTMod,
-			criticals: v.allowCriticalSavingThrows,
-			advantage: v.conSTadvantage as Advantage,
-		});
-
-		if (!probabilityOfPassing)
-			break;
-
-		cumulativeProbability = probabilityOfPassing * cumulativeProbability;
-		cumulativeOvertime += cumulativeProbability * overtimeHour;
-	}
-
-	return cumulativeOvertime;
-}
-
-function expectedNumberOfWorkHoursPerDay(v: FormValues): number {
-	return v.minimumWorksHoursPerDayBeforeExhaustionSaves + expectedOvertime(v);
 }
 
 export default function Output(props: Props) {
