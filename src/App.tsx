@@ -4,7 +4,7 @@ import LabeledErroringInput, {
 	Props
 } from './components/input/LabeledErroringInput';
 import Output from './components/output/Output';
-import FormValues, {validationSchema, labels} from './FormValues';
+import FormValues, {validationSchema, labels} from './types/FormValues';
 import { getStoredFormValues } from './functions/localStorage';
 import WorkHoursDaysOrWeeksInput from
 	'./components/input/WorkHoursDaysOrWeeksInput';

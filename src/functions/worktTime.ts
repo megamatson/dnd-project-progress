@@ -1,4 +1,4 @@
-import FormValues from "../FormValues";
+import FormValues from "../types/FormValues";
 import Advantage from "../types/Advantage";
 import Time from "../types/Time";
 import { probabilityOfPassingSavingThrow } from "./dc";

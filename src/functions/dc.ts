@@ -1,5 +1,25 @@
 import _ from "lodash";
 import Advantage from "../types/Advantage";
+import D20 from "../types/D20";
+
+export function dcResult({
+	roll, mod, dc, allowCritical
+}: {
+	roll: D20,
+	mod: number,
+	dc: number,
+	allowCritical?: boolean
+}): boolean {
+	if (allowCritical) {
+		if (roll === 1)
+			return false;
+
+		if (roll === 20)
+			return true;
+	}
+
+	return (roll + mod >= dc);
+}
 
 export interface Params {
 	dc: number,

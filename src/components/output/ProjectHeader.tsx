@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
 import _ from "lodash";
-import FormValues from "../../FormValues";
+import FormValues from "../../types/FormValues";
 
 export interface Props {}
 

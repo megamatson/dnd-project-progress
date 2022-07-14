@@ -1,5 +1,5 @@
 import _ from "lodash";
-import FormValues, {validationSchema} from "../FormValues";
+import FormValues, {validationSchema} from "../types/FormValues";
 
 function get<T extends {}>(
 	key: string,

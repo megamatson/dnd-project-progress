@@ -112,6 +112,12 @@ export const validationSchema = Yup.object({
 		.default('normal')
 		.label('Constitution Saving Throw Advantage')
 	,
+	autoRest: Yup
+		.bool()
+		.required()
+		.default(true)
+		.label('Auto rest when you have exhaustion')
+	,
 }).required();
 
 type FormValues = Yup.InferType<typeof validationSchema>;
